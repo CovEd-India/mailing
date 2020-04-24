@@ -4,5 +4,9 @@ This repository contains the code for auto informing and mailing mentors and men
 
 ### Usage
 
-After installing the google OAuth python library run both the main files. You will have to login into the main google account via the browswer. This will generate pickle files that will store this logged in state. It is imperative that this pickle file is not shared as doing so would cause breach of security. Appropriate gitignores will be used.
+Run main.py after installing the OAuth Google libraries. A window will open where you will have to login to the coved account. After that it will auto update and mail the mentors.
+Please do not share the pickle file generated after logging in as it will cause breach of security.
+
+You can change the email text by simply changing email.txt and using the appropriate template tags.
+
 

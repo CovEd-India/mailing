@@ -10,6 +10,9 @@ import base64
 SCOPES = ['https://mail.google.com/', 'https://www.googleapis.com/auth/drive']
 
 spreadsheet_id = "11lHeRzIu0InftuvbFIHaT89zVBimgzJhB3p6LgKMz2w"
+message_text = ""
+with open("email.txt", "r") as f:
+    message_text = f.read()
 
 def main():
     creds = None
@@ -40,9 +43,9 @@ def format_data(data):
     for counter, row in enumerate(data):
         if row[-1] != '0': 
             continue
-        email = row[2]
+        email = row[-2]
         row_no = counter+2
-        message = "{0}, your mentee is {1} with email {2}".format(row[3], row[0], row[1])
+        message = message_text.format(name=row[0], email=row[1], mode=row[2], phoneno=row[3], extra=row[4], mentor=row[5])
         row[-1] = '1'
         obj = {"email":email, "message": message, "row": row_no, "raw": row}
         data_list.append(obj)
@@ -98,10 +101,10 @@ def send_matching_mails(service_gmail, service_sheets, data_list):
         if sheet_result is None:
             print ("Entry {0}: Sheet could not be updated. Skipping".format(entry["row"]))
             continue
-        print ("Entry {0} updated and mentor informed".format(entry["row"]))
+        print ("Entry in Row {0} updated and mentor informed".format(entry["row"]))
 
 def update_status(service_sheets, entry):
-    range_up = "A{0}:E{0}".format(entry["row"])
+    range_up = "A{0}:H{0}".format(entry["row"])
     values = [entry["raw"]]
     body = {'values': values}
 

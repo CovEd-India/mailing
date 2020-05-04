@@ -9,7 +9,7 @@ import base64
 
 SCOPES = ['https://mail.google.com/', 'https://www.googleapis.com/auth/drive']
 
-spreadsheet_id = "11lHeRzIu0InftuvbFIHaT89zVBimgzJhB3p6LgKMz2w"
+spreadsheet_id = "1KvhduDzY-7gwAchCBjgW6w6GgiAxEZdp_VlhT8wlB5Q"
 message_text = ""
 with open("email.txt", "r") as f:
     message_text = f.read()
@@ -35,25 +35,35 @@ def main():
 
     # send_matching_mails(service)  
     data = get_sheet_data(service_sheets) [1:]
+
     data_list = format_data(data)
     send_matching_mails(service_gmail, service_sheets, data_list)
 
 def format_data(data):
     data_list = []
     for counter, row in enumerate(data):
-        if row[-1] != '0': 
+        if (len(row)) < 20:
             continue
-        email = row[-2]
+        if len(row)>=21:
+            if row[20] == 'Yes': 
+                continue
+
+        email = row[19]
+        if email == '':
+            continue
         row_no = counter+2
-        message = message_text.format(name=row[0], email=row[1], mode=row[2], phoneno=row[3], extra=row[4], mentor=row[5])
-        row[-1] = '1'
+        message = message_text.format(mentorname=row[18], name=row[2], email=row[1], mode=row[8], phoneno=row[9], extra=row[13], subjects=row[12], group=row[17], reason=row[7], extradetails=row[14])
+        if len(row) >= 21:
+            row[20] = 'Yes'
+        else:
+            row.append('Yes')
         obj = {"email":email, "message": message, "row": row_no, "raw": row}
         data_list.append(obj)
 
     return data_list
 
 def get_sheet_data(service):
-    range_sh = "Sheet1!A1:10000"
+    range_sh = "Form Responses 2!A1:10000"
     result = service.spreadsheets().values().get(
     spreadsheetId=spreadsheet_id, range=range_sh).execute()
     rows = result.get('values', [])
@@ -91,6 +101,7 @@ def send_message(service, user_id, message):
     return None
 
 def send_matching_mails(service_gmail, service_sheets, data_list):
+    counter = 0
     for entry in data_list:
         message = create_message("covedindia@gmail.com", entry["email"], "Coved India: Mentee has been assigned", (entry["message"]))
         result = send_message(service_gmail, 'me', message)
@@ -102,9 +113,11 @@ def send_matching_mails(service_gmail, service_sheets, data_list):
             print ("Entry {0}: Sheet could not be updated. Skipping".format(entry["row"]))
             continue
         print ("Entry in Row {0} updated and mentor informed".format(entry["row"]))
+        counter+=1
+    print ("Total {0} out of {1} matches have been informed".format(counter, len(data_list)))
 
 def update_status(service_sheets, entry):
-    range_up = "A{0}:H{0}".format(entry["row"])
+    range_up = "A{0}:W{0}".format(entry["row"])
     values = [entry["raw"]]
     body = {'values': values}
 

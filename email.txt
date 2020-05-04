@@ -1,5 +1,5 @@
 Regarding information about your mentee
-Dear Mentor,
+Dear {mentorname},
 Thanks for signing up to be a part of this social initiative. Based on the preferences that you gave us in the forms, we have assigned the following students to be your mentees. Their preferred mode of contact and has been listed next to their name. Please try to accommodate that if you can. We have also listed below if the students are interested in receiving extracurricular advice (such as examination tips or moral support). If you have indicated that you are interested in providing extracurricular support to mentees, please address that aspect as well. If you aren’t comfortable in providing extracurricular support but your assigned student has requested it, please contact us and your mentee and we will do the needful. We have ideally designed a modus operandi (mode of operation) which we felt would make the process the smoothest, but you are at complete liberty to reach out to the students using any online platform you desire using whatever way of operation. To protect your privacy, we aren’t providing your contact information to the students so they will not be able to contact you unless you first contact them. We might assign more students to you in the future but the number of assigned students will not exceed 5 or your preferred number which you have given us via the form (whichever is smaller). However your weekly time commitment shouldn’t increase if you follow the operating model we have suggested. It is our humble request to try and reach out to these students as soon as possible so that this initiative can actually start functioning the way it was envisioned to. Lastly please try to keep in touch with your mentees at least on a weekly basis to solve their queries. If you feel you no longer would be able to do so, please inform the students as well as us so that we can take the appropriate steps. The success of our humble effort to help needy students is all in your hands. Please visit our Facebook our Instagram page for more information and feel free to address any questions to covedindia@gmail.com.
 Link for Facebook page- https://www.facebook.com/CovEd-India-105360627792093/
 Link for Instagram-https://instagram.com/covedindia?igshid=byec8gpb97es
@@ -9,6 +9,10 @@ Student Information:
 3.)Mode of communication- {mode}
 4.)Mobile Number - {phoneno}
 5.)Whether the student is interested in receiving extracurricular support - {extra}
+6.)Subjects the student wants guidance in - {subjects}
+7.)Age Group - {group}
+8.)Reason for choosing CovEd - {reason}
+9.)Areas in which student needs extra support - {extradetails}
 
 For your convenience, we have developed an operating model which we felt would facilitate a smooth running of this process.
 1. On weekends or any other preferred times, please hold virtual “open hours” sessions using any conference call platform of their interest (Zoom, Whatsapp call, messenger etc.)
